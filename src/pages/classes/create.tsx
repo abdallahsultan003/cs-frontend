@@ -69,7 +69,14 @@ const Create = () => {
         }
     })
 
+    const subjects = subjectsQuery?.data?.data || [];
+    const subjectsLoading = subjectsQuery.isLoading;
+
+    const teachers = teachersQuery?.data?.data || [];
+    const teachersLoading = teachersQuery.isLoading;
+
     const bannerPublicId = form.watch('bannerCldPubId');
+
     const setBannerImage = (file: any, field: any) => {
         if(file) {
             field.onChange(file.url);
@@ -86,43 +93,6 @@ const Create = () => {
         }
     }
 
-    const teachers = [
-        {
-            id: "1",
-            name: "John Doe",
-        },
-        {
-            id: "2",
-            name: "Jane Smith",
-        },
-        {
-            id: "3",
-            name: "Dr. Alan Turing",
-        },
-    ];
-
-     const subjects = [
-        {
-            id: 1,
-            name: "Mathematics",
-            code: "MATH",
-        },
-        {
-            id: 2,
-            name: "Computer Science",
-            code: "CS",
-        },
-        {
-            id: 3,
-            name: "Physics",
-            code: "PHY",
-        },
-        {
-            id: 4,
-            name: "Chemistry",
-            code: "CHEM",
-        },
-    ];
 
 
 
@@ -145,7 +115,9 @@ const Create = () => {
                             Fill out form
                         </CardTitle>
                     </CardHeader>
+
                     <Separator />
+
                     <CardContent className="mt-7">
                         <Form {...form}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -202,7 +174,7 @@ const Create = () => {
                                                         field.onChange(Number(value))
                                                     }
                                                     value={field.value?.toString()}
-
+                                                    disabled={subjectsLoading}
                                                 >
                                                     <FormControl>
                                                         <SelectTrigger className="w-full">
@@ -234,10 +206,9 @@ const Create = () => {
                                                     Teacher <span className="text-orange-600">*</span>
                                                 </FormLabel>
                                                 <Select
-                                                    onValueChange={(value) =>
-                                                        field.onChange(Number(value))
-                                                    }
-                                                    value={field.value?.toString()}
+                                                    onValueChange={field.onChange}
+                                                    value={field.value}
+                                                    disabled={teachersLoading}
                                                 >
                                                     <FormControl>
                                                         <SelectTrigger className="w-full">
