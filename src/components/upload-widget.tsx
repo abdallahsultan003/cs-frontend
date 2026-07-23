@@ -66,6 +66,9 @@ const UploadWidget = ({ value = null, onChange, disabled = false }) => {
             {preview ? (
                 <div className="upload-preview">
                     <img src={preview.url} alt="Uploaded file" />
+                    <button type="button" onClick={openWidget} disabled={disabled}>
+                                   Change image
+                    </button>
                 </div>
             ): <div className="upload-dropzone" role="button" tabIndex={0}
                     onClick={openWidget} onKeyDown={(event) => {

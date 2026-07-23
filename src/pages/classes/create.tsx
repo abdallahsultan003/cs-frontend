@@ -69,10 +69,7 @@ const Create = () => {
         }
     })
 
-
-
     const bannerPublicId = form.watch('bannerCldPubId');
-
     const setBannerImage = (file: any, field: any) => {
         if(file) {
             field.onChange(file.url);
@@ -148,9 +145,7 @@ const Create = () => {
                             Fill out form
                         </CardTitle>
                     </CardHeader>
-
                     <Separator />
-
                     <CardContent className="mt-7">
                         <Form {...form}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
